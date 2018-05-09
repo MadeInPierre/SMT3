@@ -34,10 +34,6 @@ class Screen(Component):
     def unfocus(self):
     	pass
 
-    def update(self, window, events):
-    	super(Screen, self).update(window, events)
-        return False
-
 class Button(Component):
 	'''
 		Create button with images for specific states
