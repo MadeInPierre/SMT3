@@ -6,12 +6,12 @@ from bases import ScreenStates, Screen
 
 
 class Menu(Screen):
-    def __init__(self):
-        super(Menu, self).__init__()
+    def __init__(self, size):
+        super(Menu, self).__init__(size)
+        self.background = pygame.image.load("assets/loom.png")
+        self.background = pygame.transform.scale(self.background, size)
 
-    def draw(self, window):
-        s = pygame.Surface((10, 10))
-        s.fill((255, 0, 0))
-        window.blit(s, (50 + random.randint(0, 50), 50))
+    def update(self, window, events):
+        window.blit(self.background, (0, 0))
 
         return False

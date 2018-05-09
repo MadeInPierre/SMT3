@@ -4,8 +4,8 @@ class ScreenStates():
 
 
 class Screen(object):
-    def __init__(self):
-        self.state = ScreenStates.INACTIVE
+    def __init__(self, size):
+        self.size = size
 
-    def draw(self, window):
+    def update(self, window, events):
         return False
