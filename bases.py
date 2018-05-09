@@ -11,10 +11,15 @@ class Component(Object):
 		self.children.append(child)
 
 	def update(self, window, events):
-		for child in self.children:
-			child.update(window, events)
+		result = False
 
-		pass
+		for child in self.children:
+			result = child.update(window, events)
+
+			if result:
+				return result
+
+		return False
 
 class Screen(Component):
     '''
@@ -37,7 +42,7 @@ class Button(Component):
 	'''
 		Create button with images for specific states
 	'''
-	def __init__(self, image, position, size, callback):
+	def __init__(self, image, position, size):
 		super(Button, self).__init__(size)
 
 		self.image = pygame.transform.scale(image, size)
@@ -47,6 +52,41 @@ class Button(Component):
 		self.callback = callback
 
 	def update(self, window, events):
+		if (kejrlkjqf)
+			rteurn instance
+
 		window.blit(self.image, self.position)
-		
-		super(Button, self).update(window, events)
+
+
+
+class EventButton(Button):
+	def __init__(self, image, position, size, callback):
+		super(EventButton, self).__init__(image, position, size)
+
+		# Called when clicked
+		self.callback = callback
+
+	def update(self, window, events):
+		# TODO manage click
+
+		window.blit(self.image, self.position)
+
+		return False
+
+
+
+class ScreenChangeButton(Button):
+	def __init__(self, image, position, size, screen=True):
+		super(EventButton, self).__init__(image, position, size)
+
+		# Screen displayed on click
+		self.screen = screen
+
+	def update(self, window, events):
+		# TODO manage click
+		if False:
+			return self.screen
+
+		window.blit(self.image, self.position)
+
+		return False
