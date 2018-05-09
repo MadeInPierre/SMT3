@@ -1,3 +1,5 @@
+import pygame
+
 class ScreenStates():
     INACTIVE = 0
     ACTIVE   = 1
@@ -42,21 +44,25 @@ class Button(Component):
 	'''
 		Create button with images for specific states
 	'''
-	def __init__(self, image, position, size):
+	def __init__(self, content, position, size):
 		super(Button, self).__init__(size)
 
-		self.image = pygame.transform.scale(image, size)
+		if isinstance(content, pygame.Surface):
+			self.image = pygame.transform.scale(content, size)
+		else:
+			color, text = content
+
+			self.image = pygame.Surface(size)
+			self.image.fill(color)
+
 		self.position = position
 
-		# Called when
-		self.callback = callback
-
 	def update(self, window, events):
-		if (kejrlkjqf)
-			rteurn instance
+		# TODO manage click
 
 		window.blit(self.image, self.position)
 
+		return False
 
 
 class EventButton(Button):
@@ -77,7 +83,7 @@ class EventButton(Button):
 
 class ScreenChangeButton(Button):
 	def __init__(self, image, position, size, screen=True):
-		super(EventButton, self).__init__(image, position, size)
+		super(ScreenChangeButton, self).__init__(image, position, size)
 
 		# Screen displayed on click
 		self.screen = screen
