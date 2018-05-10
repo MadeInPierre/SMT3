@@ -11,8 +11,7 @@ class Grid(object):
 
 		self.padding = padding
 
-	def pos(self, pos, offset=(0, 0)):
-		x, y = pos
+	def pos(self, x, y, offset=(0, 0)):
 		offsetX, offsetY = offset
 
 		return (x * (self.padding + self.size) + self.margin + offsetX, \
