@@ -1,10 +1,9 @@
-from ..bases import Screen
+from bases import Screen
 
 class Pokemoskito(Screen):
     def __init__(self):
         super(Pokemoskito, self).__init__()
 
-    
     def focus(self):
         # TODO generate random monster
         pass
@@ -20,3 +19,4 @@ class Entity(object):
 
 class Player(Entity):
     def __init__(self):
+        pass

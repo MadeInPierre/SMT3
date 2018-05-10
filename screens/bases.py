@@ -1,6 +1,4 @@
-class ScreenStates():
-    INACTIVE = 0
-    ACTIVE   = 1
+import pygame
 
 class Component(object):
     def __init__(self, size):
@@ -38,14 +36,30 @@ class Button(Component):
     '''
         Create button with images for specific states
     '''
-    def __init__(self, image, position, size):
+    def __init__(self, content, position, size): # content is either a surface or a tuple (color, text)
         super(Button, self).__init__(size)
 
-        self.image = pygame.transform.scale(image, size)
+        if isinstance(content, pygame.Surface):
+            self.image = pygame.transform.scale(content, size)
+        else:
+            color, text = content
+            self.image = pygame.Surface(size)
+            self.image.fill(color)
+
         self.position = position
 
-        # Called when
-        self.callback = callback
+    def is_clicked(self, events):
+        for event in events:
+            if event.type == pygame.MOUSEBUTTONUP:
+                mousepos = pygame.mouse.get_pos()
+                if mousepos[0] > self.position[0] and mousepos[0] < self.position[0] + self.size[0] and \
+                   mousepos[1] > self.position[1] and mousepos[1] < self.position[1] + self.size[1]:
+                    return True
+        return False
+
+    def update(self, window, events):
+        window.blit(self.image, self.position)
+        return False
 
 
 class EventButton(Button):
@@ -56,24 +70,21 @@ class EventButton(Button):
         self.callback = callback
 
     def update(self, window, events):
-        # TODO manage click
-
+        if self.is_clicked(events):
+            self.callback()
         window.blit(self.image, self.position)
-
         return False
 
 
 
 class ScreenChangeButton(Button):
     def __init__(self, image, position, size, screen=True):
-        super(EventButton, self).__init__(image, position, size)
-
+        super(ScreenChangeButton, self).__init__(image, position, size)
         # Screen displayed on click
         self.screen = screen
 
     def update(self, window, events):
-        # TODO manage click
-        if False:
+        if self.is_clicked(events):
             return self.screen
 
         window.blit(self.image, self.position)

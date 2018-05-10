@@ -1,7 +1,6 @@
 import pygame
-from bases import ScreenStates, Screen
 
-from menu import Menu
+from screens import *
 
 class ScreenManager(object):
     def __init__(self, size):
