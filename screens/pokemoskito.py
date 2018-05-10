@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 from ..bases import Screen
 from ..util import Grid
 
 import pygame
 
+=======
+from bases import Screen
+>>>>>>> master
 
 class Pokemoskito(Screen):
 	def __init__(self, size):
@@ -65,9 +69,9 @@ class Entity(object):
 		self.texture = pygame.transform.resize(texture, size)
 
 class Enemy(Entity):
-	def __init__(self, size):
+	def __init__(self, name, size):
 		# TODO load random texture
 		surface = pygame.Surface(size)
 		surface.fill((255, 150, 200))
 
-		super(Enemy, self).__init__(surface, size)
+		super(Enemy, self).__init__(name, surface, size)
