@@ -78,4 +78,3 @@ class Enemy(Entity):
 		surface.fill((255, 150, 200))
 
 		super(Enemy, self).__init__(surface, size)
-
